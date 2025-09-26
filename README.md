@@ -1,4 +1,4 @@
-# Welders Playground 
+ # Welders Playground 
 
 Ein React-basiertes Web-Projekt, das mit Vite, TailwindCSS und modernen UI-Komponenten erstellt wurde.
 
@@ -21,7 +21,7 @@ Ein React-basiertes Web-Projekt, das mit Vite, TailwindCSS und modernen UI-Kompo
    ```
 
 3. **Browser öffnen:**
-   Die Anwendung ist unter `http://localhost:3000` verfügbar.
+   Die Anwendung ist unter `http://localhost:3000` verfügbar
 
 ### Verfügbare Scripts
 
