@@ -5,6 +5,7 @@ import path from 'path'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  base: './', // <-- WICHTIG für Cloudflare Pages
   server: {
     port: 3000,
     host: true,
@@ -37,4 +38,4 @@ export default defineConfig({
       }
     }
   }
-}) 
+})
