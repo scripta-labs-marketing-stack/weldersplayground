@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Check, Send } from 'lucide-react';
-import { sendContactEmail } from "@/api/functions";
+// Removed direct Resend import - now using serverless function
 import StyledHeading from '../components/StyledHeading';
 
 const PageHeader = ({ title, subtitle }) => (
@@ -37,7 +37,7 @@ export default function LohnschweissungenPage() {
   const [formData, setFormData] = useState({ name: '', contact: '', project: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState(null);
 
   const advantages = [
     "Flexible mobile Einsätze direkt bei Ihnen vor Ort",
@@ -50,22 +50,27 @@ export default function LohnschweissungenPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setError('');
-    
+    setError(null);
+
     try {
-      const response = await sendContactEmail({
-        name: formData.name,
-        contact: formData.contact,
-        message: formData.project,
-        subject: `Lohnschweißung Anfrage von ${formData.name}`,
-        type: 'Lohnschweißung'
+      const response = await fetch('/api/sendEmail', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.contact,
+          message: formData.project,
+          subject: `Lohnschweißung Anfrage von ${formData.name}`,
+        }),
       });
 
-      if (response.data.success) {
+      const data = await response.json();
+
+      if (data.success) {
         setIsSubmitted(true);
         setFormData({ name: '', contact: '', project: '' });
       } else {
-        setError(response.data.error || 'Ein Fehler ist aufgetreten.');
+        setError(data.error || 'Ein Fehler ist aufgetreten.');
       }
     } catch (err) {
       setError('Ihre Anfrage konnte nicht versendet werden. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt per E-Mail.');

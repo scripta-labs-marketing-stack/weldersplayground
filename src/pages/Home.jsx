@@ -41,32 +41,30 @@ export default function Home() {
   // State für Status des Formulars
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState(null);
   
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setError('');
-    
+    setError(null);
+
     try {
       const response = await fetch('/api/sendEmail', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
           message: formData.message,
-          subject: `Kontaktanfrage von ${formData.name}`
-        })
+          subject: `Kontaktanfrage von ${formData.name}`,
+        }),
       });
 
       const data = await response.json();
-  
+
       if (data.success) {
         setIsSubmitted(true);
-        setFormData({ name: '', email: '', message: '' }); // Reset bei Erfolg
+        setFormData({ name: '', email: '', message: '' });
       } else {
         setError(data.error || 'Ein Fehler ist aufgetreten.');
       }
@@ -75,7 +73,7 @@ export default function Home() {
     } finally {
       setIsSubmitting(false);
     }
-  };  
+  };
 
   // Certificate images mapping
   const certificateImages = {

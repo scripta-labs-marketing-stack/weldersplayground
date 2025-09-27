@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Check, Send } from 'lucide-react';
-import { sendContactEmail } from "@/api/functions";
+// Removed direct Resend import - now using serverless function
 import StyledHeading from '../components/StyledHeading';
 
 const PageHeader = ({ title, subtitle }) => (
@@ -41,7 +41,7 @@ export default function AusbildungPage() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState(null);
 
   const advantages = [
     "1-zu-1-Betreuung für maximalen Lernerfolg",
@@ -54,21 +54,27 @@ export default function AusbildungPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setError('');
+    setError(null);
 
     try {
-      const response = await sendContactEmail({
-        name: formData.name,
-        email: formData.email,
-        message: formData.message,
-        subject: `Ausbildungs-Anfrage von ${formData.name}`
+      const response = await fetch('/api/sendEmail', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `Ausbildungs-Anfrage von ${formData.name}`,
+        }),
       });
 
-      if (response.data.success) {
+      const data = await response.json();
+
+      if (data.success) {
         setIsSubmitted(true);
         setFormData({ name: '', email: '', message: 'Ich interessiere mich für die Ausbildung.' });
       } else {
-        setError(response.data.error || 'Ein Fehler ist aufgetreten.');
+        setError(data.error || 'Ein Fehler ist aufgetreten.');
       }
     } catch (err) {
       setError('Ihre Anfrage konnte nicht versendet werden. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt per E-Mail.');
