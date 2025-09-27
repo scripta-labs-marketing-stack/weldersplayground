@@ -87,83 +87,75 @@ export default function Home() {
       <div className="min-h-screen bg-gray-900 text-white overflow-x-hidden">
       {/* Hero Section */}
       <motion.section 
-        className="relative w-full h-screen flex items-center justify-center"
+  className="relative w-full h-screen flex items-center justify-center"
+>
+  {/* Hintergrundbild (Hero) */}
+  <motion.div 
+    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+    style={{
+      backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('/images/weldersplayground.hero.webp')`,
+      y: heroParallax
+    }}
+  />
+
+  {/* Funkenanimation */}
+  <div className="absolute inset-0 pointer-events-none overflow-hidden">
+    {[...Array(20)].map((_, i) => (
+      <motion.div
+        key={i}
+        className="absolute w-1 h-1 bg-yellow-400 rounded-full"
+        initial={{ 
+          x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200), 
+          y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
+          opacity: 0 
+        }}
+        animate={{ 
+          y: [null, -100, 100],
+          opacity: [0, 1, 0],
+          scale: [0.5, 1, 0.5]
+        }}
+        transition={{
+          duration: 3 + Math.random() * 2,
+          repeat: Infinity,
+          delay: Math.random() * 5
+        }}
+      />
+    ))}
+  </div>
+
+  {/* Text + Button */}
+  <div className="relative z-10 text-center px-4">
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1, delay: 0.2 }}
+      className="space-y-6"
+    >
+      <StyledHeading 
+        as="h1"
+        text="Welder's PlayGround"
+        className="text-4xl md:text-7xl font-black font-['Montserrat'] tracking-tight text-white"
+      />
+      <div className="w-24 h-1 bg-[#C1121F] mx-auto"></div>
+      <p className="text-lg md:text-2xl font-light max-w-3xl mx-auto leading-relaxed">
+        Lohnschweißen & Schweißausbildung im Bereich WIG-Stahl
+      </p>
+      <motion.div
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
       >
-        <motion.div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68d109b85bc98c79f2257484/beb5dcd8b_ChatGPTImage23Sept202518_11_56.webp')`,
-            y: heroParallax
-          }}
-        />
-        {/* Optimized Hero Image for LCP */}
-        <img 
-  src="/images/weldersplayground.hero.webp" 
-  alt="Schweißausrüstung im Welder's Playground" 
-  width="1536" 
-  height="1024" 
-  loading="eager" 
-  decoding="async"
-  className="w-full h-auto object-cover"
-/>
+        <Button
+          onClick={scrollToContact}
+          className="bg-[#C1121F] hover:bg-red-800 text-white px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-semibold rounded-none transition-all duration-300 shadow-2xl"
+        >
+          Jetzt Kontakt aufnehmen
+          <ChevronRight className="w-4 h-4 md:w-5 md:h-5 ml-2" />
+        </Button>
+      </motion.div>
+    </motion.div>
+  </div>
+</motion.section>
 
-        
-        {/* Floating sparks animation */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(20)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-yellow-400 rounded-full"
-              initial={{ 
-                x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200), 
-                y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
-                opacity: 0 
-              }}
-              animate={{ 
-                y: [null, -100, 100],
-                opacity: [0, 1, 0],
-                scale: [0.5, 1, 0.5]
-              }}
-              transition={{
-                duration: 3 + Math.random() * 2,
-                repeat: Infinity,
-                delay: Math.random() * 5
-              }}
-            />
-          ))}
-        </div>
-
-        <div className="relative z-10 text-center px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="space-y-6"
-          >
-            <StyledHeading 
-              as="h1"
-              text="Welder's PlayGround"
-              className="text-4xl md:text-7xl font-black font-['Montserrat'] tracking-tight text-white"
-            />
-            <div className="w-24 h-1 bg-[#C1121F] mx-auto"></div>
-            <p className="text-lg md:text-2xl font-light max-w-3xl mx-auto leading-relaxed">
-              Lohnschweißen & Schweißausbildung im Bereich WIG-Stahl
-            </p>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Button
-                onClick={scrollToContact}
-                className="bg-[#C1121F] hover:bg-red-800 text-white px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-semibold rounded-none transition-all duration-300 shadow-2xl"
-              >
-                Jetzt Kontakt aufnehmen
-                <ChevronRight className="w-4 h-4 md:w-5 md:h-5 ml-2" />
-              </Button>
-            </motion.div>
-          </motion.div>
-        </div>
-      </motion.section>
 
       {/* About Section */}
       <section className="py-20 bg-[#111111]">
