@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Check, Send } from 'lucide-react';
 // Removed direct Resend import - now using serverless function
 import StyledHeading from '../components/StyledHeading';
+import SEO from '../components/SEO';
 
 const PageHeader = ({ title, subtitle }) => (
   <div className="bg-[#111111] text-white py-12 md:py-20">
@@ -82,7 +83,9 @@ export default function AusbildungPage() {
   };
 
   return (
-    <div className="bg-[#FAFAFA] text-gray-900 min-h-screen">
+    <>
+      <SEO page="ausbildung" />
+      <div className="bg-[#FAFAFA] text-gray-900 min-h-screen">
       <PageHeader 
         title="Schweißausbildung WIG-Stahl"
         subtitle="Individueller Einzelunterricht für praxisnahes Lernen und optimalen Erfolg."
@@ -194,6 +197,7 @@ export default function AusbildungPage() {
           </motion.div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

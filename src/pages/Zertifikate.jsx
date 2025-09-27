@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Award, GraduationCap, ChevronRight } from 'lucide-react';
 import StyledHeading from '../components/StyledHeading';
+import SEO from '../components/SEO';
 
 const PageHeader = ({ title, subtitle }) => (
   <div className="bg-[#111111] text-white py-12 md:py-20">
@@ -72,7 +73,9 @@ export default function ZertifikatePage() {
   ];
 
   return (
-    <div className="bg-[#FAFAFA] text-gray-900 min-h-screen">
+    <>
+      <SEO page="zertifikate" />
+      <div className="bg-[#FAFAFA] text-gray-900 min-h-screen">
       <PageHeader 
         title="Schweißzertifikate"
         subtitle="Anerkannte Qualifikationen für höchste Ansprüche – für mich und für Sie."
@@ -121,6 +124,7 @@ export default function ZertifikatePage() {
           </Link>
         </motion.div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

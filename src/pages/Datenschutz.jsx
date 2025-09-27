@@ -1,9 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import SEO from '../components/SEO';
 
 export default function DatenschutzPage() {
   return (
-    <div className="bg-white text-black min-h-screen py-8 md:py-16">
+    <>
+      <SEO page="datenschutz" />
+      <div className="bg-white text-black min-h-screen py-8 md:py-16">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -96,6 +99,7 @@ export default function DatenschutzPage() {
           </div>
         </div>
       </motion.div>
-    </div>
+      </div>
+    </>
   );
 }

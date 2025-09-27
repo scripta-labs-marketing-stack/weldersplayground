@@ -33,7 +33,8 @@ export default defineConfig({
         manualChunks: {
           vendor: ['react', 'react-dom'],
           router: ['react-router-dom'],
-          ui: ['@radix-ui/react-accordion', '@radix-ui/react-dialog']
+          ui: ['@radix-ui/react-accordion', '@radix-ui/react-dialog'],
+          fonts: ['@fontsource/montserrat', '@fontsource/open-sans']
         }
       }
     }

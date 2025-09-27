@@ -1,9 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import SEO from '../components/SEO';
 
 export default function ImpressumPage() {
   return (
-    <div className="bg-white text-black min-h-screen py-8 md:py-16">
+    <>
+      <SEO page="impressum" />
+      <div className="bg-white text-black min-h-screen py-8 md:py-16">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -66,6 +69,7 @@ export default function ImpressumPage() {
           </div>
         </div>
       </motion.div>
-    </div>
+      </div>
+    </>
   );
 }

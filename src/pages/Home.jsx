@@ -9,6 +9,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import StyledHeading from '../components/StyledHeading';
+import SEO from '../components/SEO';
 // Removed direct Resend import - now using serverless function
 
 export default function Home() {
@@ -81,7 +82,9 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white overflow-x-hidden">
+    <>
+      <SEO page="home" />
+      <div className="min-h-screen bg-gray-900 text-white overflow-x-hidden">
       {/* Hero Section */}
       <motion.section 
         className="relative w-full h-screen flex items-center justify-center"
@@ -89,9 +92,19 @@ export default function Home() {
         <motion.div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68d109b85bc98c79f2257484/beb5dcd8b_ChatGPTImage23Sept202518_11_56.png')`,
+            backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68d109b85bc98c79f2257484/beb5dcd8b_ChatGPTImage23Sept202518_11_56.webp')`,
             y: heroParallax
           }}
+        />
+        {/* Optimized Hero Image for LCP */}
+        <img
+          src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68d109b85bc98c79f2257484/beb5dcd8b_ChatGPTImage23Sept202518_11_56.webp"
+          alt="Welder's PlayGround Hero"
+          className="absolute inset-0 w-full h-full object-cover opacity-0"
+          fetchpriority="high"
+          loading="eager"
+          width="1920"
+          height="1080"
         />
         
         {/* Floating sparks animation */}
@@ -244,6 +257,7 @@ export default function Home() {
                   src={certificateImages[selectedCertificate]}
                   alt={`${selectedCertificate} Zertifikat`}
                   className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+                  loading="lazy"
                 />
                 <button
                   onClick={() => setSelectedCertificate(null)}
@@ -343,7 +357,7 @@ export default function Home() {
           className="absolute inset-0 bg-cover bg-center bg-fixed"
           style={{
             y: galleryParallax,
-            backgroundImage: `linear-gradient(rgba(17,17,17,0.8), rgba(17,17,17,0.6)), url('https://images.unsplash.com/photo-1581092335878-1ffea17e0d87?w=1600')`
+            backgroundImage: `linear-gradient(rgba(17,17,17,0.8), rgba(17,17,17,0.6)), url('https://images.unsplash.com/photo-1581092335878-1ffea17e0d87?w=1600&fm=webp')`
           }}
         />
         
@@ -381,6 +395,9 @@ export default function Home() {
                     src={image.src}
                     alt={image.alt}
                     className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
+                    width="400"
+                    height="256"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <Camera className="w-8 h-8 text-white" />
@@ -413,6 +430,9 @@ export default function Home() {
                         src={image.src}
                         alt={image.alt}
                         className="w-full h-64 object-cover transition-transform duration-500 group-active:scale-110"
+                        loading="lazy"
+                        width="280"
+                        height="256"
                       />
                       <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-active:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                         <Camera className="w-8 h-8 text-white" />
@@ -454,6 +474,7 @@ export default function Home() {
                   src={selectedImage.src}
                   alt={selectedImage.alt}
                   className="max-w-full max-h-full object-contain rounded-lg"
+                  loading="lazy"
                 />
                 <button
                   onClick={() => setSelectedImage(null)}
@@ -567,6 +588,7 @@ export default function Home() {
     </motion.div>
   </div>
 </section>
-    </div>
+      </div>
+    </>
   );
 }

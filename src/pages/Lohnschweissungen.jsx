@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Check, Send } from 'lucide-react';
 // Removed direct Resend import - now using serverless function
 import StyledHeading from '../components/StyledHeading';
+import SEO from '../components/SEO';
 
 const PageHeader = ({ title, subtitle }) => (
   <div className="bg-[#111111] text-white py-12 md:py-20">
@@ -78,7 +79,9 @@ export default function LohnschweissungenPage() {
   };
 
   return (
-    <div className="bg-[#FAFAFA] text-gray-900 min-h-screen">
+    <>
+      <SEO page="lohnschweissungen" />
+      <div className="bg-[#FAFAFA] text-gray-900 min-h-screen">
       <PageHeader 
         title="Lohnschweißungen WIG-Stahl"
         subtitle="Mobile Schweißarbeiten mit eigener Anlage. Präzise Ausführung auch bei den komplexesten Projekten."
@@ -187,6 +190,7 @@ export default function LohnschweissungenPage() {
           </motion.div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

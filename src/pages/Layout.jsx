@@ -71,6 +71,10 @@ const Header = () => {
                             src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68d109b85bc98c79f2257484/63cf6538e_LogoWebseite.png"
                             alt="Welder's PlayGround"
                             className="h-10 md:h-12 w-auto"
+                            loading="eager"
+                            fetchpriority="high"
+                            width="120"
+                            height="48"
                         />
                     </Link>
 
@@ -140,10 +144,8 @@ export default function Layout({ children }) {
   }, []);
 
   return (
-    <div className="font-['Open_Sans']">
+    <div className="font-['Open_Sans']" style={{ fontFamily: 'Open Sans, sans-serif' }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Open+Sans:wght@300;400;600;700&display=swap');
-        
         html {
           scroll-behavior: smooth;
         }
