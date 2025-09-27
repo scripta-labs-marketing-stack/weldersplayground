@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from "@/components/ui/button";
@@ -133,15 +132,36 @@ export default function LohnschweissungenPage() {
               <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6 p-4 md:p-8 bg-white rounded-lg shadow-xl">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
-                  <Input id="name" placeholder="Ihr Name" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} required className="h-10 md:h-12"/>
+                  <Input 
+                    id="name" 
+                    placeholder="Ihr Name" 
+                    value={formData.name} 
+                    onChange={(e) => setFormData({...formData, name: e.target.value})} 
+                    required 
+                    className="h-10 md:h-12"
+                  />
                 </div>
                 <div>
                   <label htmlFor="contact" className="block text-sm font-medium text-gray-700 mb-1">E-Mail oder Telefonnummer</label>
-                  <Input id="contact" placeholder="Ihre Kontaktdaten" value={formData.contact} onChange={(e) => setFormData({...formData, contact: e.target.value})} required className="h-10 md:h-12"/>
+                  <Input 
+                    id="contact" 
+                    placeholder="Ihre Kontaktdaten" 
+                    value={formData.contact} 
+                    onChange={(e) => setFormData({...formData, contact: e.target.value})} 
+                    required 
+                    className="h-10 md:h-12"
+                  />
                 </div>
                 <div>
                   <label htmlFor="project" className="block text-sm font-medium text-gray-700 mb-1">Kurze Projektbeschreibung</label>
-                  <Textarea id="project" placeholder="Worum geht es in Ihrem Projekt?" value={formData.project} onChange={(e) => setFormData({...formData, project: e.target.value})} required className="min-h-24 md:min-h-32"/>
+                  <Textarea 
+                    id="project" 
+                    placeholder="Worum geht es in Ihrem Projekt?" 
+                    value={formData.project} 
+                    onChange={(e) => setFormData({...formData, project: e.target.value})} 
+                    required 
+                    className="min-h-24 md:min-h-32"
+                  />
                 </div>
                 {error && (
                   <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-3 rounded-r text-sm">
@@ -151,7 +171,11 @@ export default function LohnschweissungenPage() {
                 <div className="text-xs text-gray-500 text-center">
                   Ihre Daten werden vertraulich behandelt und nicht an Dritte weitergegeben.
                 </div>
-                <Button type="submit" disabled={isSubmitting} className="w-full bg-[#C1121F] hover:bg-red-800 text-white py-3 md:py-4 text-base md:text-lg font-semibold rounded-none transition-all duration-300">
+                <Button 
+                  type="submit" 
+                  disabled={isSubmitting} 
+                  className="w-full bg-[#C1121F] hover:bg-red-800 text-white py-3 md:py-4 text-base md:text-lg font-semibold rounded-none transition-all duration-300"
+                >
                   {isSubmitting ? 'Wird gesendet...' : 'Unverbindlich anfragen'}
                   {!isSubmitting && <Send className="w-4 h-4 md:w-5 md:h-5 ml-2" />}
                 </Button>

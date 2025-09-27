@@ -9,7 +9,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import StyledHeading from '../components/StyledHeading';
-import { sendContactEmail } from "@/api/functions"; // Added import
+// Removed direct Resend import - now using serverless function
 
 export default function Home() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -31,44 +31,51 @@ export default function Home() {
   const scrollToContact = () => {
     document.getElementById('kontakt').scrollIntoView({ behavior: 'smooth' });
   };
-
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   });
-
-  // New state variables for form submission status
+  
+  // State für Status des Formulars
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState('');
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setError('');
     
     try {
-      const response = await sendContactEmail({
-        name: formData.name,
-        contact: formData.email,
-        message: formData.message,
-        subject: `Kontaktanfrage von ${formData.name}`,
-        type: 'Kontaktanfrage'
+      const response = await fetch('/api/sendEmail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `Kontaktanfrage von ${formData.name}`
+        })
       });
 
-      if (response.data.success) {
+      const data = await response.json();
+  
+      if (data.success) {
         setIsSubmitted(true);
-        setFormData({ name: '', email: '', message: '' }); // Reset form data on success
+        setFormData({ name: '', email: '', message: '' }); // Reset bei Erfolg
       } else {
-        setError(response.data.error || 'Ein Fehler ist aufgetreten.');
+        setError(data.error || 'Ein Fehler ist aufgetreten.');
       }
     } catch (err) {
       setError('Ihre Anfrage konnte nicht versendet werden. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt per E-Mail.');
     } finally {
       setIsSubmitting(false);
     }
-  };
+  };  
 
   // Certificate images mapping
   const certificateImages = {
@@ -464,158 +471,106 @@ export default function Home() {
         </AnimatePresence>
       </section>
 
-      {/* Contact Section */}
-      <section id="kontakt" className="py-20 bg-[#111111]">
-        <div className="max-w-7xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <StyledHeading
-              as="h2"
-              text="Kontakt aufnehmen"
-              className="text-4xl md:text-5xl font-black font-['Montserrat'] mb-6 text-white"
-            />
-            <div className="w-24 h-1 bg-[#C1121F] mx-auto"></div>
-          </motion.div>
-
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Info */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="space-y-8"
-            >
-              <div>
-                <StyledHeading 
-                  as="h3"
-                  text="Direkter Kontakt"
-                  className="text-2xl font-bold font-['Montserrat'] mb-6 text-white"
-                />
-                <div className="space-y-4">
-                  <motion.div 
-                    whileHover={{ x: 10 }}
-                    className="flex items-center space-x-4"
-                  >
-                    <Phone className="w-6 h-6 text-[#C1121F]" />
-                    <a href="tel:017096930120" className="text-lg text-gray-300 hover:text-white transition-colors">
-                      0170/9693020
-                    </a>
-                  </motion.div>
-                  <motion.div 
-                    whileHover={{ x: 10 }}
-                    className="flex items-center space-x-4"
-                  >
-                    <Mail className="w-6 h-6 text-[#C1121F]" />
-                    <a href="mailto:info@weldersplayground.de" className="text-lg text-gray-300 hover:text-white transition-colors">
-                      info@weldersplayground.de
-                    </a>
-                  </motion.div>
-                </div>
-              </div>
-
-              <div className="bg-[#333333] p-6 rounded-lg">
-                <StyledHeading 
-                  as="h4"
-                  text="Warum Welder's PlayGround?"
-                  className="text-xl font-semibold font-['Montserrat'] mb-4 text-white"
-                />
-                <ul className="space-y-2 text-gray-300">
-                  <li className="flex items-center space-x-2">
-                    <Zap className="w-4 h-4 text-[#C1121F]" />
-                    <span>Mobile Schweißarbeiten vor Ort</span>
-                  </li>
-                  <li className="flex items-center space-x-2">
-                    <Zap className="w-4 h-4 text-[#C1121F]" />
-                    <span>Individueller Einzelunterricht</span>
-                  </li>
-                  <li className="flex items-center space-x-2">
-                    <Zap className="w-4 h-4 text-[#C1121F]" />
-                    <span>Zertifizierte Ausbildung</span>
-                  </li>
-                </ul>
-              </div>
-            </motion.div>
-
-            {/* Contact Form */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              {isSubmitted ? (
-                <div className="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 md:p-6 rounded-r-lg">
-                  <h3 className="font-bold text-base md:text-lg">Anfrage erfolgreich gesendet!</h3>
-                  <p className="text-sm md:text-base">Vielen Dank für Ihr Interesse. Wir werden uns schnellstmöglich mit Ihnen in Verbindung setzen.</p>
-                  <button 
-                    onClick={() => {setIsSubmitted(false); setFormData({name: '', email: '', message: ''})}}
-                    className="mt-4 text-sm underline"
-                  >
-                    Neue Nachricht senden
-                  </button>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <Input
-                      placeholder="Ihr Name"
-                      value={formData.name}
-                      onChange={(e) => setFormData({...formData, name: e.target.value})}
-                      className="bg-[#333333] border-gray-600 text-white placeholder-gray-400 h-12 rounded-none focus:border-[#C1121F]"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <Input
-                      type="email"
-                      placeholder="Ihre E-Mail"
-                      value={formData.email}
-                      onChange={(e) => setFormData({...formData, email: e.target.value})}
-                      className="bg-[#333333] border-gray-600 text-white placeholder-gray-400 h-12 rounded-none focus:border-[#C1121F]"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <Textarea
-                      placeholder="Ihre Nachricht"
-                      value={formData.message}
-                      onChange={(e) => setFormData({...formData, message: e.target.value})}
-                      className="bg-[#333333] border-gray-600 text-white placeholder-gray-400 min-h-32 rounded-none focus:border-[#C1121F]"
-                      required
-                    />
-                  </div>
-                  {error && (
-                    <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-3 rounded-r text-sm">
-                      {error}
-                    </div>
-                  )}
-                  <div className="text-xs text-gray-400 text-center">
-                    Ihre Daten werden vertraulich behandelt und nicht an Dritte weitergegeben.
-                  </div>
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <Button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full bg-[#C1121F] hover:bg-red-800 text-white py-4 text-lg font-semibold rounded-none transition-all duration-300"
-                    >
-                      {isSubmitting ? 'Wird gesendet...' : 'Unverbindlich anfragen'}
-                    </Button>
-                  </motion.div>
-                </form>
-              )}
-            </motion.div>
-          </div>
+{/* Contact Section */}
+<section id="kontakt" className="py-20 bg-[#111111]">
+  <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-12">
+    {/* Left Side: Kontaktinformationen */}
+    <div>
+      <StyledHeading 
+        as="h2" 
+        text="Kontakt aufnehmen" 
+        className="text-2xl md:text-4xl font-bold text-white mb-6" 
+      />
+      <div className="space-y-6 text-gray-300">
+        <div>
+          <h3 className="text-lg font-semibold text-white">Direkter Kontakt</h3>
+          <p className="mt-2 flex items-center"><span className="mr-2">📞</span> 0170/9693020</p>
+          <p className="mt-1 flex items-center"><span className="mr-2">✉️</span> info@weldersplayground.de</p>
         </div>
-      </section>
+        <div className="bg-[#2A2A2A] p-6 rounded-md">
+          <h3 className="text-lg font-semibold text-red-600 mb-4">Warum Welder's PlayGround?</h3>
+          <ul className="space-y-2 text-sm">
+            <li>⚡ Mobile Schweißarbeiten vor Ort</li>
+            <li>⚡ Individueller Einzelunterricht</li>
+            <li>⚡ Zertifizierte Ausbildung</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    {/* Right Side: Formular */}
+    <motion.div
+      initial={{ opacity: 0, x: 50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+    >
+      {isSubmitted ? (
+        <div className="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 md:p-6 rounded-r-lg">
+          <h3 className="font-bold text-base md:text-lg">Anfrage erfolgreich gesendet!</h3>
+          <p className="text-sm md:text-base">Vielen Dank für Ihr Interesse. Wir werden uns schnellstmöglich mit Ihnen in Verbindung setzen.</p>
+          <button 
+            onClick={() => {setIsSubmitted(false); setFormData({name: '', email: '', message: ''})}}
+            className="mt-4 text-sm underline"
+          >
+            Neue Nachricht senden
+          </button>
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <Input
+              placeholder="Ihr Name"
+              value={formData.name}
+              onChange={(e) => setFormData({...formData, name: e.target.value})}
+              className="bg-[#333333] border-gray-600 text-white placeholder-gray-400 h-12 rounded-none focus:border-[#C1121F]"
+              required
+            />
+          </div>
+          <div>
+            <Input
+              type="email"
+              placeholder="Ihre E-Mail"
+              value={formData.email}
+              onChange={(e) => setFormData({...formData, email: e.target.value})}
+              className="bg-[#333333] border-gray-600 text-white placeholder-gray-400 h-12 rounded-none focus:border-[#C1121F]"
+              required
+            />
+          </div>
+          <div>
+            <Textarea
+              placeholder="Ihre Nachricht"
+              value={formData.message}
+              onChange={(e) => setFormData({...formData, message: e.target.value})}
+              className="bg-[#333333] border-gray-600 text-white placeholder-gray-400 min-h-32 rounded-none focus:border-[#C1121F]"
+              required
+            />
+          </div>
+          {error && (
+            <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-3 rounded-r text-sm">
+              {error}
+            </div>
+          )}
+          <div className="text-xs text-gray-400 text-center">
+            Ihre Daten werden vertraulich behandelt und nicht an Dritte weitergegeben.
+          </div>
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <Button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full bg-[#C1121F] hover:bg-red-800 text-white py-4 text-lg font-semibold rounded-none transition-all duration-300"
+            >
+              {isSubmitting ? 'Wird gesendet...' : 'Unverbindlich anfragen'}
+            </Button>
+          </motion.div>
+        </form>
+      )}
+    </motion.div>
+  </div>
+</section>
     </div>
   );
 }

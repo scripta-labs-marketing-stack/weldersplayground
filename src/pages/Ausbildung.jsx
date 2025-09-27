@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from "@/components/ui/button";
@@ -35,7 +34,11 @@ const PageHeader = ({ title, subtitle }) => (
 );
 
 export default function AusbildungPage() {
-  const [formData, setFormData] = useState({ name: '', contact: '', message: 'Ich interessiere mich für die Ausbildung.' });
+  const [formData, setFormData] = useState({ 
+    name: '', 
+    email: '', 
+    message: 'Ich interessiere mich für die Ausbildung.' 
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState('');
@@ -56,15 +59,14 @@ export default function AusbildungPage() {
     try {
       const response = await sendContactEmail({
         name: formData.name,
-        contact: formData.contact,
+        email: formData.email,
         message: formData.message,
-        subject: `Ausbildungs-Anfrage von ${formData.name}`,
-        type: 'Schweißausbildung'
+        subject: `Ausbildungs-Anfrage von ${formData.name}`
       });
 
       if (response.data.success) {
         setIsSubmitted(true);
-        setFormData({ name: '', contact: '', message: 'Ich interessiere mich für die Ausbildung.' });
+        setFormData({ name: '', email: '', message: 'Ich interessiere mich für die Ausbildung.' });
       } else {
         setError(response.data.error || 'Ein Fehler ist aufgetreten.');
       }
@@ -123,7 +125,10 @@ export default function AusbildungPage() {
                 <h3 className="font-bold text-base md:text-lg">Anfrage erfolgreich gesendet!</h3>
                 <p className="text-sm md:text-base">Vielen Dank für Ihr Interesse. Wir werden uns schnellstmöglich mit Ihnen in Verbindung setzen, um alles Weitere zu besprechen.</p>
                 <button 
-                  onClick={() => {setIsSubmitted(false); setFormData({name: '', contact: '', message: 'Ich interessiere mich für die Ausbildung.'})}}
+                  onClick={() => {
+                    setIsSubmitted(false);
+                    setFormData({name: '', email: '', message: 'Ich interessiere mich für die Ausbildung.'});
+                  }}
                   className="mt-3 text-sm underline hover:text-green-800"
                 >
                   Neue Anfrage stellen
@@ -133,15 +138,36 @@ export default function AusbildungPage() {
               <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6 p-4 md:p-8 bg-white rounded-lg shadow-xl">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
-                  <Input id="name" placeholder="Ihr Name" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} required className="h-10 md:h-12"/>
+                  <Input 
+                    id="name" 
+                    placeholder="Ihr Name" 
+                    value={formData.name} 
+                    onChange={(e) => setFormData({...formData, name: e.target.value})} 
+                    required 
+                    className="h-10 md:h-12"
+                  />
                 </div>
                 <div>
-                  <label htmlFor="contact" className="block text-sm font-medium text-gray-700 mb-1">E-Mail oder Telefonnummer</label>
-                  <Input id="contact" placeholder="Ihre Kontaktdaten" value={formData.contact} onChange={(e) => setFormData({...formData, contact: e.target.value})} required className="h-10 md:h-12"/>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">E-Mail</label>
+                  <Input 
+                    id="email" 
+                    type="email"
+                    placeholder="Ihre E-Mail-Adresse" 
+                    value={formData.email} 
+                    onChange={(e) => setFormData({...formData, email: e.target.value})} 
+                    required 
+                    className="h-10 md:h-12"
+                  />
                 </div>
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Ihre Nachricht</label>
-                  <Textarea id="message" value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} required className="min-h-24 md:min-h-32"/>
+                  <Textarea 
+                    id="message" 
+                    value={formData.message} 
+                    onChange={(e) => setFormData({...formData, message: e.target.value})} 
+                    required 
+                    className="min-h-24 md:min-h-32"
+                  />
                 </div>
                 {error && (
                   <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-3 rounded-r text-sm">
@@ -151,7 +177,11 @@ export default function AusbildungPage() {
                 <div className="text-xs text-gray-500 text-center">
                   Ihre Daten werden vertraulich behandelt und nicht an Dritte weitergegeben.
                 </div>
-                <Button type="submit" disabled={isSubmitting} className="w-full bg-[#C1121F] hover:bg-red-800 text-white py-3 md:py-4 text-base md:text-lg font-semibold rounded-none transition-all duration-300">
+                <Button 
+                  type="submit" 
+                  disabled={isSubmitting} 
+                  className="w-full bg-[#C1121F] hover:bg-red-800 text-white py-3 md:py-4 text-base md:text-lg font-semibold rounded-none transition-all duration-300"
+                >
                   {isSubmitting ? 'Wird gesendet...' : 'Jetzt anmelden'}
                   {!isSubmitting && <Send className="w-4 h-4 md:w-5 md:h-5 ml-2" />}
                 </Button>
