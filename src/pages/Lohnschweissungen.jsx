@@ -53,24 +53,22 @@ export default function LohnschweissungenPage() {
     setError(null);
 
     try {
-      const response = await fetch('/api/sendEmail', {
+      const response = await fetch('https://formspree.io/f/mvgwzqde', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: formData.name,
           email: formData.contact,
           message: formData.project,
-          subject: `Lohnschweißung Anfrage von ${formData.name}`,
+          form: 'Lohnschweißungen',
         }),
       });
 
-      const data = await response.json();
-
-      if (data.success) {
+      if (response.ok) {
         setIsSubmitted(true);
         setFormData({ name: '', contact: '', project: '' });
       } else {
-        setError(data.error || 'Ein Fehler ist aufgetreten.');
+        setError('Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.');
       }
     } catch (err) {
       setError('Ihre Anfrage konnte nicht versendet werden. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt per E-Mail.');

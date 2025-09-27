@@ -19,7 +19,6 @@ Ein React-basiertes Web-Projekt, das mit Vite, TailwindCSS und modernen UI-Kompo
    ```bash
    npm run dev
    ```
-
 3. **Browser öffnen:**
    Die Anwendung ist unter `http://localhost:3000` verfügbar
 

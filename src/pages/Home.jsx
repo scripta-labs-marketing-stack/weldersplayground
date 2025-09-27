@@ -49,24 +49,22 @@ export default function Home() {
     setError(null);
 
     try {
-      const response = await fetch('/api/sendEmail', {
+      const response = await fetch('https://formspree.io/f/mvgwzqde', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
           message: formData.message,
-          subject: `Kontaktanfrage von ${formData.name}`,
+          form: 'Startseite',
         }),
       });
 
-      const data = await response.json();
-
-      if (data.success) {
+      if (response.ok) {
         setIsSubmitted(true);
         setFormData({ name: '', email: '', message: '' });
       } else {
-        setError(data.error || 'Ein Fehler ist aufgetreten.');
+        setError('Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.');
       }
     } catch (err) {
       setError('Ihre Anfrage konnte nicht versendet werden. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt per E-Mail.');
