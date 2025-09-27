@@ -97,15 +97,16 @@ export default function Home() {
           }}
         />
         {/* Optimized Hero Image for LCP */}
-        <img
-          src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68d109b85bc98c79f2257484/beb5dcd8b_ChatGPTImage23Sept202518_11_56.webp"
-          alt="Welder's PlayGround Hero"
-          className="absolute inset-0 w-full h-full object-cover opacity-0"
-          fetchpriority="high"
-          loading="eager"
-          width="1920"
-          height="1080"
-        />
+        <img 
+  src="/images/weldersplayground.hero.webp" 
+  alt="Schweißausrüstung im Welder's Playground" 
+  width="1536" 
+  height="1024" 
+  loading="eager" 
+  decoding="async"
+  className="w-full h-auto object-cover"
+/>
+
         
         {/* Floating sparks animation */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
