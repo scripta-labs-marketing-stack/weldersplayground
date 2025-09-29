@@ -68,7 +68,7 @@ const Header = () => {
                 <div className="flex justify-between items-center h-20">
                     <Link to={createPageUrl('Home')} className="flex items-center">
                         <img 
-                            src="/logo.svg" 
+                            src="/LOGONeuSchatten.svg" 
                             className="h-10 md:h-12 w-auto"
                             loading="eager"
                             fetchpriority="high"
