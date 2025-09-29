@@ -67,14 +67,14 @@ const Header = () => {
             <div className="max-w-7xl mx-auto px-4">
                 <div className="flex justify-between items-center h-20">
                     <Link to={createPageUrl('Home')} className="flex items-center">
-                        <img 
-                            src="/LOGONeuSchatten.svg" 
-                            className="h-10 md:h-12 w-auto"
-                            loading="eager"
-                            fetchpriority="high"
-                            width="120"
-                            height="48"
-                        />
+                    <img 
+  src="/LOGONeuSchatten.svg" 
+  className="w-auto"
+  loading="eager"
+  fetchpriority="high"
+  width="200"
+  height="80"
+/>
                     </Link>
 
                     <nav className="hidden md:flex items-center space-x-8">

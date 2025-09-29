@@ -8,9 +8,9 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
           <div className="mb-6 md:mb-0">
-            <img 
-              src="/logo.svg" 
-              alt="Welder's PlayGround"
+          <img 
+            src="/LOGONeuSchatten.svg" 
+             alt="Welder's PlayGround"
               className="h-10 md:h-12 w-auto mx-auto md:mx-0 mb-2"
             />
             <p className="text-gray-400 text-sm">Kapsalis Peter</p>
