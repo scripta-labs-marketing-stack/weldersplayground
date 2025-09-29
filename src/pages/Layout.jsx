@@ -68,8 +68,7 @@ const Header = () => {
                 <div className="flex justify-between items-center h-20">
                     <Link to={createPageUrl('Home')} className="flex items-center">
                         <img 
-                            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68d109b85bc98c79f2257484/63cf6538e_LogoWebseite.png"
-                            alt="Welder's PlayGround"
+                            src="/logo.svg" 
                             className="h-10 md:h-12 w-auto"
                             loading="eager"
                             fetchpriority="high"

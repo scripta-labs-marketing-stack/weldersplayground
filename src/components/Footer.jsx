@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
           <div className="mb-6 md:mb-0">
             <img 
-              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68d109b85bc98c79f2257484/63cf6538e_LogoWebseite.png"
+              src="/logo.svg" 
               alt="Welder's PlayGround"
               className="h-10 md:h-12 w-auto mx-auto md:mx-0 mb-2"
             />
