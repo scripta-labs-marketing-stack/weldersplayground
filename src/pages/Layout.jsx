@@ -72,8 +72,8 @@ const Header = () => {
   className="w-auto"
   loading="eager"
   fetchpriority="high"
-  width="200"
-  height="80"
+  width="180"
+  height="60"
 />
                     </Link>
 
