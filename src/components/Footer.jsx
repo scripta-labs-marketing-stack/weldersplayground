@@ -9,10 +9,11 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
           <div className="mb-6 md:mb-0">
           <img 
-            src="/LOGONeuSchatten.svg" 
-             alt="Welder's PlayGround"
-              className="h-10 md:h-12 w-auto mx-auto md:mx-0 mb-2"
-            />
+          src="/LOGOweiss.svg" 
+          alt="Welder's PlayGround"
+          className="h-20 w-auto mx-auto md:mx-0 mb-2"
+
+        />
             <p className="text-gray-400 text-sm">Kapsalis Peter</p>
           </div>
           <div className="flex flex-col items-center md:items-start space-y-2 mb-6 md:mb-0">
