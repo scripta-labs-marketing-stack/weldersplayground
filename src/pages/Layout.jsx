@@ -67,14 +67,8 @@ const Header = () => {
             <div className="max-w-7xl mx-auto px-4">
                 <div className="flex justify-between items-center h-20">
                     <Link to={createPageUrl('Home')} className="flex items-center">
-                        <img 
-                            src="/LOGONweiss.svg?v=3" 
-                            className="h-10 md:h-12 w-auto"
-                            loading="eager"
-                            fetchpriority="high"
-                            width="120"
-                            height="48"
-                        />
+                    <img src="/LOGOweiss.svg" alt="Welder's Playground" />
+
                     </Link>
 
                     <nav className="hidden md:flex items-center space-x-8">
