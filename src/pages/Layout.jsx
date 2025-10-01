@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
@@ -22,7 +20,7 @@ const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
-        // Handle scrolling after navigation to a hash link
+        // Smooth scroll wenn Hash in der URL steht
         if (location.hash) {
             const id = location.hash.substring(1);
             setTimeout(() => {
@@ -36,26 +34,32 @@ const Header = () => {
 
     const handleNavClick = (e, path) => {
         setIsOpen(false);
+
         if (path.startsWith('/#')) {
             e.preventDefault();
             const id = path.substring(2);
-            // On homepage, just scroll
+
             if (location.pathname === '/' || location.pathname === createPageUrl('Home')) {
+                // Bereits auf Startseite → nur scrollen
                 document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
             } else {
-                // Navigate to homepage first, then scroll to hash
-                navigate('/' + path);
+                // Auf andere Seite → zuerst nach "/" navigieren + Hash setzen
+                navigate(`/#${id}`);
             }
         }
     };
-    
+
     const NavLink = ({ item }) => {
         const isActive = location.pathname === item.path.split('#')[0];
         return (
-            <Link 
-                to={item.path} 
+            <Link
+                to={item.path}
                 onClick={(e) => handleNavClick(e, item.path)}
-                className={`font-['Montserrat'] font-semibold text-sm uppercase tracking-wider relative transition-colors duration-300 ${isActive && !item.path.includes('#') ? 'text-[#C1121F]' : 'text-gray-300 hover:text-white'}`}
+                className={`font-['Montserrat'] font-semibold text-sm uppercase tracking-wider relative transition-colors duration-300 ${
+                    isActive && !item.path.includes('#')
+                        ? 'text-[#C1121F]'
+                        : 'text-gray-300 hover:text-white'
+                }`}
             >
                 {item.name}
             </Link>
@@ -67,12 +71,13 @@ const Header = () => {
             <div className="max-w-7xl mx-auto px-4">
                 <div className="flex justify-between items-center h-20">
                     <Link to={createPageUrl('Home')} className="flex items-center">
-                    <img src="/LOGOweiss.svg" alt="Welder's Playground" 
-                    className="h-16 md:h-20 w-auto"
-                    loading="eager" fetchpriority="high"
-
-/>
-
+                        <img
+                            src="/LOGOweiss.svg"
+                            alt="Welder's Playground"
+                            className="h-16 md:h-20 w-auto"
+                            loading="eager"
+                            fetchpriority="high"
+                        />
                     </Link>
 
                     <nav className="hidden md:flex items-center space-x-8">
@@ -81,7 +86,7 @@ const Header = () => {
 
                     <div className="md:hidden">
                         <button onClick={() => setIsOpen(!isOpen)} className="text-white p-2">
-                           {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                         </button>
                     </div>
                 </div>
@@ -96,7 +101,7 @@ const Header = () => {
                         className="md:hidden bg-[#111111]"
                     >
                         <nav className="flex flex-col items-center space-y-6 py-8">
-                           {navItems.map(item => <NavLink key={item.name} item={item} />)}
+                            {navItems.map(item => <NavLink key={item.name} item={item} />)}
                         </nav>
                     </motion.div>
                 )}
@@ -192,4 +197,5 @@ export default function Layout({ children }) {
     </div>
   );
 }
+
 

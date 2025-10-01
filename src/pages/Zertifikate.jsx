@@ -58,17 +58,15 @@ const CertificateCard = ({ title, items, icon }) => (
 
 export default function ZertifikatePage() {
   const myCertificates = [
-    "Schweißwerkmeister (HWK)",
+    "DVS-Schweißwerkmeister (HWK)",
     "International Welding Specialist (IWS)",
-    "Zertifiziert nach DIN EN ISO 9606-1",
-    "Zertifiziert nach DIN EN ISO 9606-2",
-    "Zertifiziert nach WHG (Wasserhaushaltsgesetz)"
+    "DVS-Schweißlehrer Wolfram-Schutzgasschweißen - Stahl",
   ];
 
   const trainingCertificates = [
-    "Vorbereitung und Abnahme von Schweißerprüfungen nach DIN EN ISO 9606.",
-    "Erwerb von Qualifikationen für spezielle Werkstoffgruppen.",
-    "Individuelle Zertifizierungspfade je nach Karriereziel.",
+    "Vorbereitung von Schweißerprüfungen nach DIN EN ISO 9606.",
+    "Erwerb von Qualifikationen für verschiedene Werkstoffgruppen.",
+    "Individuelle Zertifizierungspfade je nach Karriereziel (nach Absprache)",
     "Auffrischungskurse zur Verlängerung bestehender Zertifikate."
   ];
 
