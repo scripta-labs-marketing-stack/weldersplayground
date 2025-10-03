@@ -58,7 +58,7 @@ const CertificateCard = ({ title, items, icon }) => (
 
 export default function ZertifikatePage() {
   const myCertificates = [
-    "Zertifikate folgen in kürze",
+    "Zertifikate folgen in Kürze",
 
   ];
 
