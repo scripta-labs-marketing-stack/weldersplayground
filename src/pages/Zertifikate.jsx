@@ -58,9 +58,8 @@ const CertificateCard = ({ title, items, icon }) => (
 
 export default function ZertifikatePage() {
   const myCertificates = [
-    "DVS-Schweißwerkmeister (HWK)",
-    "International Welding Specialist (IWS)",
-    "DVS-Schweißlehrer Wolfram-Schutzgasschweißen - Stahl",
+    "Zertifikate folgen in kürze",
+
   ];
 
   const trainingCertificates = [

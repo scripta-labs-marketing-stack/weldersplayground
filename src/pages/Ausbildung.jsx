@@ -49,7 +49,7 @@ export default function AusbildungPage() {
     "Fokus auf praktische Fähigkeiten und reale Anwendungsfälle",
     "Flexible Terminabsprache nach Ihren Bedürfnissen",
     "Lernen an modernen, professionellen Schweißanlagen",
-    "Vorbereitung auf anerkannte Schweißzertifikate"
+    "Ausbildungszertifikate nach Absprache"
   ];
 
   const handleSubmit = async (e) => {

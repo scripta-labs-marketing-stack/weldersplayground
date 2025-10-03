@@ -6,5 +6,5 @@
     },
     "jsx": "react-jsx"
   },
-  "include": ["src/**/*.js", "src/**/*.jsx"]
+  "include": ["src/**/*.js", "src/**/*.jsx", "src/pages/Ausbildung.tsx", "src/api/functions.ts"]
 } 
