@@ -503,6 +503,7 @@ export default function Home() {
             <li>⚡ Mobile Schweißarbeiten vor Ort</li>
             <li>⚡ Individueller Einzelunterricht</li>
             <li>⚡ Zertifizierte Ausbildung</li>
+            <li>⚡ Keine Arbeitnehmerüberlassung</li>
           </ul>
         </div>
       </div>
