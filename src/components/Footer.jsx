@@ -33,7 +33,7 @@ export default function Footer() {
           <p>© {new Date().getFullYear()} Welder's PlayGround. Alle Rechte vorbehalten.</p>
           <p className="mt-4 text-xs text-gray-700">
             <a 
-              href="https://scripta-labs.de" 
+              href="https://safe-dome.de" 
               target="_blank" 
               rel="noopener noreferrer"
               className="hover:text-gray-500 transition-colors"
