@@ -80,13 +80,33 @@ const CertificateCard = ({ title, items, icon, onOpen }) => (
 
 export default function ZertifikatePage() {
   const myCertificates = [
-    { title: "WIG-Schweißerprüfung Stahl (EN ISO 9606-1) – Blech & Rohr", file: "/certificates/20260116-1610.pdf" },
-    { title: "WIG-Schweißerprüfung Stahl – Blech & Rohr (EN ISO 9606-1)", file: "/certificates/20260116-1611.pdf" },
-    { title: "WIG-Schweißerprüfung Stahl – Kehlnähte & Rohr (EN ISO 9606-1)", file: "/certificates/20260116-1613.pdf" },
-    { title: "WIG-Schweißerprüfung Stahl – Rohr Ø 80 mm (EN ISO 9606-1)", file: "/certificates/20260116-1614.pdf" },
-    { title: "WIG-Schweißerprüfung Stahl – Rohr Ø 50 mm (EN ISO 9606-1)", file: "/certificates/20260116-1615.pdf" },
-    { title: "WIG-Schweißerprüfung Stahl – Rohr Ø 12 mm (EN ISO 9606-1)", file: "/certificates/20260116-1616.pdf" },
+    {
+      title: "EN ISO 9606-1 141 T BW FM5 S s 1,0 D 12,0 PH-L045 ss gb",
+      file: "/certificates/20260116-1610.pdf",
+    },
+    {
+      title: "EN ISO 9606-1 141 T BW FM5 S s 1,0 D 12,0 PH-L045 ss gb",
+      file: "/certificates/20260116-1611.pdf",
+    },
+    {
+      title: "EN ISO 9606-1 141 T FW FM5 S t 2,0–5,0 D 21,3–88,3 PH sl/ml",
+      file: "/certificates/20260116-1613.pdf",
+    },
+    {
+      title: "EN ISO 9606-1 141 T BW FM5 S s 1,0 D 80,0 PH-L045 ss gb",
+      file: "/certificates/20260116-1614.pdf",
+    },
+    {
+      title: "EN ISO 9606-1 141 T BW FM5 S s 1,0 D 50,0 PH-L045 ss gb",
+      file: "/certificates/20260116-1615.pdf",
+    },
+    {
+      title: "EN ISO 9606-1 141 T BW FM5 S s 1,0 D 12,0 PH-L045 ss gb",
+      file: "/certificates/20260116-1616.pdf",
+    },
   ];
+
+
 
   const trainingCertificates = [
     "Vorbereitung auf Schweißerprüfungen nach DIN EN ISO 9606",
@@ -175,10 +195,11 @@ export default function ZertifikatePage() {
       </div>
 
       <iframe
-        src={activePdf}
-        className="w-full h-full"
-        title={activeTitle}
-      />
+  src={`${activePdf}#toolbar=0&navpanes=0&scrollbar=1`}
+  className="w-full h-full"
+  title={activeTitle}
+/>
+
     </div>
   </div>
 )}
