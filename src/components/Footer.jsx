@@ -38,7 +38,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="hover:text-gray-500 transition-colors"
             >
-              Designed by Scripta Labs
+              Designed by SafeDome It-Sicherheit und Webdesign
             </a>
           </p>
         </div>
