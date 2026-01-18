@@ -53,9 +53,9 @@ export default function ImpressumPage() {
               Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:
             </h2>
             <p className="mb-1">Steve Otte</p>
-            <p className="mb-1">Scripta Labs</p>
-            <p className="mb-1">Kraiburger Str. 7</p>
-            <p className="mb-1">83342 Tacherting</p>
+            <p className="mb-1">SafeDome It-Sicherheit und Webentwicklung</p>
+            <p className="mb-1">Am See 24</p>
+            <p className="mb-1">16816 Neuruppin</p>
             <p className="mb-1">Deutschland</p>
           </div>
 
