@@ -89,7 +89,7 @@ export default function ZertifikatePage() {
       file: "/certificates/20260116-1611.pdf",
     },
     {
-      title: "EN ISO 9606-1 141 T FW FM5 S t 2,0–5,0 D 21,3–88,3 PH sl/ml",
+      title: "EN ISO 9606-1 141 T FW FM5 S t 2,0 D 21,3 PH sl\nEN ISO 9606-1 141 T FW FM5 S t 5,0 D 88,3 PH ml",
       file: "/certificates/20260116-1613.pdf",
     },
     {
