@@ -80,7 +80,7 @@ const CertificateCard = ({ title, items, icon, onOpen }) => (
 
 export default function ZertifikatePage() {
   const myCertificates = [
-    {
+    { 
       title: "EN ISO 9606-1 141 T BW FM5 S s 1,0 D 12,0 PH-L045 ss gb",
       file: "/certificates/20260116-1610.pdf",
     },
