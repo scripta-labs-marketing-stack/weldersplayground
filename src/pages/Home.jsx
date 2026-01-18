@@ -299,7 +299,7 @@ export default function Home() {
               {
                 icon: <Target className="w-12 h-12" />,
                 title: "Schweißzertifikate",
-                description: "Zertifizierung nach DIN ISO 9606-2, WHG und weiteren Standards nach Absprache.",
+                description: "Zertifizierung nach DIN ISO 9606-1, WHG und weiteren Standards nach Absprache.",
                 link: createPageUrl("Zertifikate")
               }
             ].map((service, index) => (
