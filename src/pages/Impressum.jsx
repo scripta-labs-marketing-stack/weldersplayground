@@ -73,7 +73,6 @@ export default function ImpressumPage() {
     in Kürze ergänzt.
   </p>
 </div>
-
         </div>
       </motion.div>
       </div>
