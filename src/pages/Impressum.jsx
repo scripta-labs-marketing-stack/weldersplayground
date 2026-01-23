@@ -60,13 +60,20 @@ export default function ImpressumPage() {
           </div>
 
           <div>
-            <h2 className="text-xl md:text-2xl font-semibold font-['Montserrat'] mb-4 text-[#e50914]">
-              Hinweis zur Firmierung:
-            </h2>
-            <p>
-              Das Unternehmen befindet sich derzeit in Gründung. Handelsregister- oder Umsatzsteuerangaben werden nachgereicht, sobald diese verfügbar sind.
-            </p>
-          </div>
+  <h2 className="text-xl md:text-2xl font-semibold font-['Montserrat'] mb-4 text-[#e50914]">
+    Hinweis zur Firmierung:
+  </h2>
+
+  <p className="mb-2">
+    Steuernummer: <strong>106/234/60636</strong>
+  </p>
+
+  <p>
+    Der Handelsregistereintrag befindet sich derzeit in Vorbereitung und wird
+    in Kürze ergänzt.
+  </p>
+</div>
+
         </div>
       </motion.div>
       </div>
