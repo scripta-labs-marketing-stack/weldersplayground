@@ -21,13 +21,43 @@ export default function Home() {
 
   // Sample images for gallery - in real app these would be actual welding photos
   const galleryImages = [
-    { id: 1, src: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600", alt: "WIG-Schweißarbeiten" },
-    { id: 2, src: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600", alt: "Schweißausbildung" },
-    { id: 3, src: "https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=600", alt: "Metallbearbeitung" },
-    { id: 4, src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68d109b85bc98c79f2257484/5f2a5f672_48355873226_592f4b30e7_b.jpg", alt: "Schweißer bei der Arbeit" },
-    { id: 5, src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600", alt: "Werkstatt" },
-    { id: 6, src: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600", alt: "Schweißarbeiten" }
+    {
+      id: 1,
+      src: "/images/gallery/4ecc3b9b-c8dc-4f10-aee4-65e46088fc45.JPG",
+      alt: "WIG-Schweißarbeiten"
+    },
+    {
+      id: 2,
+      src: "/images/gallery/ddd8c74c-b710-4bb4-8f4a-1800fa8eb067.JPG",
+      alt: "Schweißausbildung"
+    },
+    {
+      id: 3,
+      src: "/images/gallery/3e5bd223-cc77-4248-bddb-c834f660c20f.JPG",
+      alt: "Metallbearbeitung"
+    },
+    {
+      id: 4,
+      src: "/images/gallery/05d4e3d5-613c-4014-80d3-a67f54f5ed56.JPG",
+      alt: "Schweißer bei der Arbeit"
+    },
+    {
+      id: 5,
+      src: "/images/gallery/162f3b78-b103-429c-a76a-b4f7209750fc.JPG",
+      alt: "Werkstatt"
+    },
+    {
+      id: 6,
+      src: "/images/gallery/514775cd-d4e5-4803-90d0-f916b6481bcc.JPG",
+      alt: "Schweißarbeiten"
+    },
+    {
+      id: 7,
+      src: "/images/gallery/708d0966-befa-4c47-ab54-9e0e0a23ea74.JPG",
+      alt: "Schweißarbeiten Übersicht"
+    }
   ];
+  
 
   const scrollToContact = () => {
     document.getElementById('kontakt').scrollIntoView({ behavior: 'smooth' });
