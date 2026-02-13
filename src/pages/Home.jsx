@@ -55,6 +55,16 @@ export default function Home() {
       id: 7,
       src: "/images/gallery/708d0966-befa-4c47-ab54-9e0e0a23ea74.JPG",
       alt: "Schweißarbeiten Übersicht"
+    },
+    {
+      id: 8,
+      src: "/images/gallery/PHOTO-2026-02-09-08-22-29.jpg",
+      alt: "WIG-Schweißnaht Edelstahl Rohr"
+    },
+    {
+      id: 9,
+      src: "/images/gallery/PHOTO-2026-02-09-08-22-29-2.jpg",
+      alt: "Schweißverbindung Edelstahl Konus"
     }
   ];
   
