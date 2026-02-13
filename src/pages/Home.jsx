@@ -68,7 +68,7 @@ export default function Home() {
     }
   ];
   
-
+  
   const scrollToContact = () => {
     document.getElementById('kontakt').scrollIntoView({ behavior: 'smooth' });
   };
