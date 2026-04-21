@@ -155,7 +155,7 @@ useEffect(() => {
   <source src="/Werbung-peter.mp4" type="video/mp4" />
 </video>
 
-  {/* Overlay */}
+  {/* Overlay */} 
   <div className="absolute inset-0 bg-black/50"></div>
 </motion.div>
  
