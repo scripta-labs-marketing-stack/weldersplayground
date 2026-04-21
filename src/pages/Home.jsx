@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { Phone, Mail, Award, Wrench, GraduationCap, Camera, X, ChevronRight, Zap, Shield, Target } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -18,6 +18,15 @@ export default function Home() {
   const { scrollYProgress } = useScroll();
   const heroParallax = useTransform(scrollYProgress, [0, 0.3], [0, -50]);
   const galleryParallax = useTransform(scrollYProgress, [0.5, 1], [0, -100]);
+
+  const videoRef = useRef(null);
+
+useEffect(() => {
+  if (videoRef.current) {
+    videoRef.current.muted = true;
+    videoRef.current.play().catch(() => {});
+  }
+}, []);
 
   // Sample images for gallery - in real app these would be actual welding photos
   const galleryImages = [
@@ -130,38 +139,26 @@ export default function Home() {
   className="relative w-full h-screen flex items-center justify-center"
 >
   {/* Hintergrundbild (Hero) */}
-  <motion.div 
-    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-    style={{
-      backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('/images/weldersplayground.hero.webp')`,
-      y: heroParallax
-    }}
-  />
+  <motion.div
+  className="absolute inset-0"
+  style={{ y: heroParallax }}
+>
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  preload="metadata"
+  poster="/images/weldersplayground.hero.webp"
+  className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+>
+  <source src="/Werbung-peter.mp4" type="video/mp4" />
+</video>
 
-  {/* Funkenanimation */}
-  <div className="absolute inset-0 pointer-events-none overflow-hidden">
-    {[...Array(20)].map((_, i) => (
-      <motion.div
-        key={i}
-        className="absolute w-1 h-1 bg-yellow-400 rounded-full"
-        initial={{ 
-          x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200), 
-          y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
-          opacity: 0 
-        }}
-        animate={{ 
-          y: [null, -100, 100],
-          opacity: [0, 1, 0],
-          scale: [0.5, 1, 0.5]
-        }}
-        transition={{
-          duration: 3 + Math.random() * 2,
-          repeat: Infinity,
-          delay: Math.random() * 5
-        }}
-      />
-    ))}
-  </div>
+  {/* Overlay */}
+  <div className="absolute inset-0 bg-black/50"></div>
+</motion.div>
+ 
 
   {/* Text + Button */}
   <div className="relative z-10 text-center px-4">
