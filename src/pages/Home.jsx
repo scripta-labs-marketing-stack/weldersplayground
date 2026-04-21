@@ -140,7 +140,7 @@ useEffect(() => {
 >
   {/* Hintergrundbild (Hero) */}
   <motion.div
-  className="absolute inset-0"
+  className="absolute inset-0 bg-black"
   style={{ y: heroParallax }}
 >
 <video
@@ -148,8 +148,7 @@ useEffect(() => {
   muted
   loop
   playsInline
-  preload="metadata"
-  poster="/images/weldersplayground.hero.webp"
+  preload="auto"
   className="absolute inset-0 w-full h-full object-cover pointer-events-none"
 >
   <source src="/Werbung-peter.mp4" type="video/mp4" />
