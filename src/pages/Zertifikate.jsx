@@ -81,32 +81,32 @@ const CertificateCard = ({ title, items, icon, onOpen }) => (
 export default function ZertifikatePage() {
   const myCertificates = [
     { 
+      title: "E N ISO 9606-1 141 T BW FM3 S s 2,0 D 21,3 PH-L045 ss nb",
+      file: "/certificates/141 T BW FM3 S s 2,0.pdf",
+    },
+    {
       title: "EN ISO 9606-1 141 T BW FM3 S s 6,3 D 88,9 PH-L045 ss nb",
-      file: "/certificates/20260116-1610.pdf",
-    },
-    {
-      title: "EN ISO 9606-1141 T BW FM3 S s 2,0 D 21,3 PH-L045 ss nb",
-      file: "/certificates/20260116-1611.pdf",
-    },
-    {
-      title: "EN ISO 9606-1 141 T FW FM5 S t 2,0 D 21,3 PH sl",
-      file: "/certificates/20260116-1613.pdf",
-    },
-    {
-      title: "EN ISO 9606-1 141 T FW FM5 S t 5,0 D 88,3 PH ml",
-      file: "/certificates/20260116-1613.pdf",
-    },
-    {
-      title: "EN ISO 9606-1141 T BW FM5 S s 5,0 D 80,3 PH-L045 ss gb",
-      file: "/certificates/20260116-1614.pdf",
-    },
-    {
-      title: "EN ISO 9606-1 141 T BW FM5 S s 1,5 D 50,0 PH-L045 ss gb",
-      file: "/certificates/20260116-1615.pdf",
+      file: "/certificates/141 T BW FM3 S s 6,3.pdf",
     },
     {
       title: "EN ISO 9606-1 141 T BW FM5 S s 1,0 D 12,0 PH-L045 ss gb",
-      file: "/certificates/20260116-1616.pdf",
+      file: "/certificates/141 T BW FM5 S s 1,0.pdf",
+    },
+    {
+      title: "EN ISO 9606-1 141 T BW FM5 S s 1,5 D 50,0 PH-L045 ss gb",
+      file: "/certificates/141 T BW FM5 S s 1,5.pdf",
+    },
+    {
+      title: "EN ISO 9606-1 141 T BW FM5 S s 5,0 D 80,3 PH-L045 ss gb",
+      file: "/certificates/141 T BW FM5 S s 5,0.pdf",
+    },
+    {
+      title: "EN ISO 9606-1 141 T FW FM5 S t 2,0 D 21,3 PH sl",
+      file: "/certificates/141 T FW FM5 S t 2,0    141 T FW FM5 S t 5,0.pdf",
+    },
+    {
+      title: "EN ISO 9606-1 141 T FW FM5 S t 5,0 D 88,3 PH ml",
+      file: "/certificates/141 T FW FM5 S t 2,0    141 T FW FM5 S t 5,0.pdf.pdf",
     },
   ];
 
